@@ -8,9 +8,103 @@
 
 </head>
 <body>
+<div class="container" id="container">
+<div id="questions"></div>
+<div id="timer"> </div>
+</div>
 
 
 
-<script type="text/javascript" href="assets/javascript/logic.js"></script>
+
+
+
+<script type="text/javascript" href="assets/javascript/logic.js">
+// Answers
+
+var correct = [],
+var wrong = [],
+// Timer
+var number = 120;
+var intervalId;
+
+function run ()  {
+intervalId = setInterval(decrement,1000);
+}
+
+function decrement() {
+	number--;
+$("#timer").html("Time left: " + number);
+
+
+if (number === 0) {
+	stop();
+	alert("Time's up.");
+}
+}
+
+function stop () {
+	clearInterval(intervalId);
+}
+//On click to start quiz and timer.
+
+
+$(".container").append("<button id='start'>")
+$("#start").on("click", run); 
+
+
+
+	$("#questions").append("<div id='question1'> Who is the protagonist of the Zelda series?</div>");
+$("#question1").append("<div  class='correct1'> A: Link </div")
+
+$("#question1").append("<div  class='wrong'> B: Ganondorf </div");
+$("#question1").append("<div  class='wrong'> C: Zelda </div");
+$("#question1").append("<div  class='wrong'> D: Mario </div");
+
+
+
+	$("#questions").append("<div id='question2'> Who is the protagonist of the Zelda series?</div>");
+$("#question2").append("<div  class='correct1'> A: Link </div")
+
+$("#question2").append("<div  class='wrong'> B: Ganondorf </div");
+$("#question2").append("<div  class='wrong'> C: Zelda </div");
+$("#question2").append("<div  class='wrong'> D: Mario </div");
+
+
+	$("#questions").append("<div id='question3'> Who is the protagonist of the Zelda series?</div>");
+$("#question3").append("<div  class='correct1'> A: Link </div")
+
+$("#question3").append("<div  class='wrong'> B: Ganondorf </div");
+$("#question3").append("<div  class='wrong'> C: Zelda </div");
+$("#question3").append("<div  class='wrong'> D: Mario </div");
+
+
+	$("#questions").append("<div id='question4'> Who is the protagonist of the Zelda series?</div>");
+$("#question4").append("<div  class='correct1'> A: Link </div")
+
+$("#question4").append("<div  class='wrong'> B: Ganondorf </div");
+$("#question4").append("<div  class='wrong'> C: Zelda </div");
+$("#question4").append("<div  class='wrong'> D: Mario </div");
+
+
+	$("#questions").append("<div id='question5'> Who is the protagonist of the Zelda series?</div>");
+$("#question5").append("<div  class='correct1'> A: Link </div");
+$("#question5").append("<div  class='wrong'> B: Ganondorf </div");
+$("#question5").append("<div  class='wrong'> C: Zelda </div");
+$("#question5").append("<div  class='wrong'> D: Mario </div");
+
+
+
+$(".correct1").on("click", function() {
+
+	alert("Correct!")
+	// correct.push()
+});
+
+$(".wrong").on("click", function(){
+	alert("Wrong!")
+});
+
+
+</script>
 </body>
 </html>
