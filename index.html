@@ -9,27 +9,29 @@
 </head>
 <body>
 <div class="container" id="container">
-<div id="questions"></div>
+<button id="btn"></button>
 <div id="timer"> </div>
+<div id="questions"></div>
 </div>
 
 
-
-
-
-
+<!-- Pseudocode -->
+<!-- get the questions to appear and timer to begin only after the button has been pressed -->
+<!-- use .hide() to hide the answers other than the answer chosen. so push the answer to a variable or array, then say if var blah = true, .hide($("#wronganswers1")) -->
+<!-- things left to do -->
+<!-- get the timer to stop at 0 -->
+<!-- get the answers other than the one chosen to be unselectable after the user chooses their answer -->
 <script type="text/javascript" href="assets/javascript/logic.js">
 // Answers
-
-// var correct = [],
-// var wrong = [],
+var correct = 0;
+var wrong = 0;
 // Timer
-var number = 120;
+var number = 60;
 var intervalId;
 
 function run ()  {
 intervalId = setInterval(decrement,1000);
-}
+};
 
 function decrement() {
 	number--;
@@ -38,71 +40,172 @@ $("#timer").html("Time left: " + number);
 
 if (number === 0) {
 	stop();
-	alert("Time's up.");
+	alert("Time's up. # Correct: " + correct + "|" +  "Incorrect: " + wrong);
+	$("#questions").hide();
+
+
 }
-}
+};
 
 function stop () {
 	clearInterval(intervalId);
-}
+};
+
 //On click to start quiz and timer.
 
 
-$(".container").append("<button id='start'>")
-$("#start").on("click", run); 
+$("#btn").on("click", run()); 
 
 
+// Question 1
+$("#questions").append("<div id='question1'> What does document.QuerySelector do?</div>");
 
-	$("#questions").append("<div id='question1'> Who is the protagonist of the Zelda series?</div>");
-$("#question1").append("<div  class='correct1'> A: Link </div")
-
-$("#question1").append("<div  class='wrong'> B: Ganondorf </div");
-$("#question1").append("<div  class='wrong'> C: Zelda </div");
-$("#question1").append("<div  class='wrong'> D: Mario </div");
-
-
-
-	$("#questions").append("<div id='question2'> Who is the protagonist of the Zelda series?</div>");
-$("#question2").append("<div  class='correct1'> A: Link </div")
-
-$("#question2").append("<div  class='wrong'> B: Ganondorf </div");
-$("#question2").append("<div  class='wrong'> C: Zelda </div");
-$("#question2").append("<div  class='wrong'> D: Mario </div");
+$("#question1").append("<div  class='answer1'id='correct1'> A: Grabs an element by its class or id, as specified in the () </div>")
+$("#question1").append("<div  class='answer1'class='wrong'> B: The same thing as document.getElementById() </div>");
+$("#question1").append("<div  class='answer1'class='wrong'> C: Nobody knows </div>");
+$("#question1").append("<div  class='answer1'class='wrong'> D: Nothing. </div>");
 
 
-	$("#questions").append("<div id='question3'> Who is the protagonist of the Zelda series?</div>");
-$("#question3").append("<div  class='correct1'> A: Link </div")
+// Question 2
+$("#questions").append("<div id='question2'> What is the difference between .innerhtml and .html? </div>");
 
-$("#question3").append("<div  class='wrong'> B: Ganondorf </div");
-$("#question3").append("<div  class='wrong'> C: Zelda </div");
-$("#question3").append("<div  class='wrong'> D: Mario </div");
-
-
-	$("#questions").append("<div id='question4'> Who is the protagonist of the Zelda series?</div>");
-$("#question4").append("<div  class='correct1'> A: Link </div")
-
-$("#question4").append("<div  class='wrong'> B: Ganondorf </div");
-$("#question4").append("<div  class='wrong'> C: Zelda </div");
-$("#question4").append("<div  class='wrong'> D: Mario </div");
+$("#question2").append("<div class='answer2' id='correct2'> A: .innerhtml is javascript and .html is jquery </div>")
+$("#question2").append("<div class='answer2' class='wrong'> B: .html is javascript and .innerhtml is jquery </div>");
+$("#question2").append("<div class='answer2' class='wrong'> C: nobody knows </div>");
+$("#question2").append("<div class='answer2' class='wrong'> D: Nothing </div>");
 
 
-	$("#questions").append("<div id='question5'> Who is the protagonist of the Zelda series?</div>");
-$("#question5").append("<div  class='correct1'> A: Link </div");
-$("#question5").append("<div  class='wrong'> B: Ganondorf </div");
-$("#question5").append("<div  class='wrong'> C: Zelda </div");
-$("#question5").append("<div  class='wrong'> D: Mario </div");
+// Question  3
+
+$("#questions").append("<div id='question3'> what is the correct syntax for both .innerhtml and .html?</div>");
+
+$("#question3").append("<div class='answer3' class='wrong'> A: Nothing </div>");
+$("#question3").append("<div class='answer3' class='wrong'> B: .innerhtml('text')/.html('text') </div>");
+$("#question3").append("<div class='answer3' id='correct3'> C: Element.innerhtml('text')/Element.html('text') </div>")
+$("#question3").append("<div class='answer3' class='wrong'> D: Nobody knows </div>");
+
+// Question 4
+$("#questions").append("<div id='question4'> Do you need an internet connection to use jquery? </div>");
+
+$("#question4").append("<div class='answer4' class='wrong'> A: Yes </div>");
+$("#question4").append("<div  class='answer4'id='correct4'> B: Only if you don't have the cdn saved locally </div")
+$("#question4").append("<div class='answer4' class='wrong'> C: Maybe </div>");
+$("#question4").append("<div class='answer4' class='wrong'> D: No </div>");
+
+// Question 5
+$("#questions").append("<div id='question5'> What will 20 % 5 == 0 return? </div>");
+
+$("#question5").append("<div class='answer5'  class='wrong'> A: -1 </div>");
+$("#question5").append("<div  class='answer5'class='wrong'> B: false </div>");
+$("#question5").append("<div class='answer5' class='wrong'> C: undefined </div>");
+$("#question5").append("<div class='answer5' id='correct5'> D: true </div>");
 
 
+// When the correct answer for question 1 is chosen, alert correct then hide the question.
+$(".answer1").on("click", function() {
 
-$(".correct1").on("click", function() {
 
+if ($(this).attr('id')==='correct1') {
 	alert("Correct!")
-	// correct.push()
+	correct++;
+	$("#question1").hide();
+}
+// else, the answer is wrong, so alert wrong then hide the question. 
+else {
+	alert("Wrong")
+	$("#question1").hide();
+	wrong ++;
+}
+console.log(correct,wrong);
 });
 
-$(".wrong").on("click", function(){
-	alert("Wrong!")
+//===================================
+$(".answer2").on("click", function() {
+
+
+if ($(this).attr('id')==='correct2') {
+	alert("Correct!")
+	correct++;
+	$("#question2").hide();
+}
+
+else {
+	alert("Wrong")
+	$("#question2").hide();
+	wrong ++;
+
+}
+console.log(correct,wrong);
+
 });
+
+
+
+//=======================================================
+$(".answer3").on("click", function() {
+
+
+if ($(this).attr('id')==='correct3') {
+	alert("Correct!")
+	correct++;
+	$("#question3").hide();
+}
+
+else {
+	alert("Wrong")
+	$("#question3").hide();
+	wrong ++;
+
+}
+console.log(correct,wrong);
+});
+
+
+//=========================================================
+
+$(".answer4").on("click", function() {
+
+
+if ($(this).attr('id')==='correct4') {
+	alert("Correct!")
+	correct++;
+	$("#question4").hide();
+}
+
+else {
+	alert("Wrong")
+	$("#question4").hide();
+	wrong ++;
+
+}
+console.log(correct,wrong);
+
+});
+//===========================================================
+
+
+
+$(".answer5").on("click", function() {
+
+
+if ($(this).attr('id')==='correct5') {
+	alert("Correct!")
+	correct++;
+	$("#question5").hide();
+}
+
+else {
+	alert("Wrong")
+	$("#question5").hide();
+	wrong ++;
+
+}
+console.log(correct,wrong);
+
+});
+//=============================================================
+
+
 
 
 </script>
