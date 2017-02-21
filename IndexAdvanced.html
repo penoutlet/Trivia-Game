@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trivia Game</title>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- <script src="../../jquery-3.1.1.min.js"</script> -->
+
+</head>
+<body>
+<div class="container" id="container">
+<div id="timer"> </div>
+<div id="questions">
+	<form action="/success-page" class="simple-quiz">
+      <h3>Question 1: What does document.QuerySelector do?</h3>
+      
+      <label>
+        <input type="radio" name="answers[1]" value="incorrect">
+        Grabs an element by its ID.
+      </label>
+      
+      <label>
+        <input type="radio" name="answers[1]" value="incorrect">
+        Same thing as document.getElementById
+      </label>
+
+      <label>
+        <input type="radio" name="answers[1]" value="correct">
+        Selects by class as well as by id. 
+      </label>
+
+      <h3>Question 2: What is the difference between .innerhtml and .html?</h3>
+      
+      <label>
+        <input type="radio" name="answers[2]" value="incorrect">
+        No difference.
+      </label>
+      
+      <label>
+        <input type="radio" name="answers[2]" value="correct">
+        One is javascript, one is jquery (in that order).
+      </label>
+
+      <label>
+        <input type="radio" name="answers[2]" value="incorrect">
+        One is made up.
+      </label>
+
+
+     <h3>Question 3: What will 20 % 5 == 0 return?</h3>
+      
+      <label>
+        <input type="radio" name="answers[3]" value="incorrect">
+        5
+      </label>
+      
+      <label>
+        <input type="radio" name="answers[3]" value= "correct">
+        true
+      </label>
+
+      <label>
+        <input type="radio" name="answers[3]" value="incorrect">
+        False
+      </label>
+
+     <h3>Question 4: Do you need an internet connection to use jquery?</h3>
+      
+      <label>
+        <input type="radio" name="answers[4]" value="incorrect">
+       Yes
+      </label>
+      
+      <label>
+        <input type="radio" name="answers[4]" value= "correct">
+       No
+        </label>
+
+      <label>
+        <input type="radio" name="answers[4]" value="incorrect">
+       Only if you don't have it saved locally.
+       </label>
+
+      <input type="submit" class="submit">
+    <form>
+      
+
+</div>
+</div>
+
+
+<!-- just have to stop the timer when all questions are answered. -->
+<script type="text/javascript" href="assets/javascript/logic.js">
+// Answers
+var correct = 0;
+var wrong = 0;
+var answered = 0;
+// Timer
+var number = 10;
+var intervalId;
+
+function run ()  {
+intervalId = setInterval(decrement,1000);
+alert("This is a 5 question quiz on Jquery. You will have 60 seconds to complete it. Choose an answer by clicking on A, B, C or D. Click OK to begin.");
+};
+
+
+
+
+
+
+function decrement() {
+	number--;
+$("#timer").html("Time left: " + number);
+
+
+if (number === 0) {
+
+	stop();
+}	
+
+};
+
+
+function stop () {
+	clearInterval(intervalId);
+	number = 0;
+$("#questions").html("Time's up. # Correct: " + correct + "|" +  "Incorrect: " + wrong);
+	
+};
+
+
+function handleCLick () {
+
+var amountCorrect = 0;
+for (var i = 0; i <= 4; i++) {
+	var radios = document.getElementByName('answers'+i);
+	for (var j = 0; j< radios.length; j++) {
+		var radio = radios[j];
+		if (radio.value == "correct" && radio.checked) {
+			amountCorrect++;
+		}
+		else amountWrong ++;
+	}
+}
+$("#questions").html("# Correct: " + amountCorrect + " | " + "Incorrect: " + amountWrong);
+}
+
+
+$("#timer").append(run()); 
+$(".submit").on("click", function() {
+stop();
+	
+
+});
+
+
+
+
+
+</script>
+</body>
+</html>
