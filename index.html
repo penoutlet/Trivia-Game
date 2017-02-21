@@ -36,12 +36,13 @@ $("#timer").html("Time left: " + number);
 
 if (number === 0) {
 	stop();
-	alert("Time's up. # Correct: " + correct + "|" +  "Incorrect: " + wrong);
-	$("#questions").hide();
+	alert("Time's up.")
+	$("#questions").html("# Correct: " + correct + "|" +  "Incorrect: " + wrong);
+	
 }
 else if (answered === 5) {
 	stop();
-	alert("Time's up. # Correct: " + correct + "|" +  "Incorrect: " + wrong);
+	$("#questions").html("Time's up. # Correct: " + correct + "|" +  "Incorrect: " + wrong);
 	
 }
 
@@ -107,19 +108,18 @@ $(".answer1").on("click", function() {
 
 
 if ($(this).attr('id')==='correct1') {
-	alert("Correct!")
+	
 	correct++;
 	answered++;
 	$("#question1").hide();
 }
 // else, the answer is wrong, so alert wrong then hide the question. 
 else {
-	alert("Wrong")
 	$("#question1").hide();
 	wrong ++;
 	answered++;
 }
-console.log(correct,wrong);
+	console.log(correct,wrong);
 });
 
 //===================================
@@ -127,19 +127,17 @@ $(".answer2").on("click", function() {
 
 
 if ($(this).attr('id')==='correct2') {
-	alert("Correct!")
 	correct++;
 	answered++;
 	$("#question2").hide();
 }
 
 else {
-	alert("Wrong")
 	$("#question2").hide();
 	wrong ++;
-answered++;
+	answered++;
 }
-console.log(correct,wrong);
+	console.log(correct,wrong);
 
 });
 
@@ -150,17 +148,15 @@ $(".answer3").on("click", function() {
 
 
 if ($(this).attr('id')==='correct3') {
-	alert("Correct!")
 	correct++;
 	answered++;
 	$("#question3").hide();
 }
 
 else {
-	alert("Wrong")
 	$("#question3").hide();
 	wrong ++;
-answered++;
+	answered++;
 }
 console.log(correct,wrong);
 });
@@ -172,14 +168,12 @@ $(".answer4").on("click", function() {
 
 
 if ($(this).attr('id')==='correct4') {
-	alert("Correct!")
 	correct++;
 	answered++;
 	$("#question4").hide();
 }
 
 else {
-	alert("Wrong")
 	$("#question4").hide();
 	wrong ++;
 answered++;
@@ -195,14 +189,12 @@ $(".answer5").on("click", function() {
 
 
 if ($(this).attr('id')==='correct5') {
-	alert("Correct!")
 	correct++;
 	answered++;
 	$("#question5").hide();
 }
 
 else {
-	alert("Wrong")
 	$("#question5").hide();
 	wrong ++;
 	answered++;
